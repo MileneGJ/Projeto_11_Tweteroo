@@ -28,6 +28,15 @@ app.post("/sign-up", (req, res) => {
     }
 });
 
+app.post("/tweets", (req, res) => {
+    if(typeof(req.body.username)==="string"&&typeif(req.body.tweet)==="string"){
+        AllTweets.push(req.body);
+        res.send("OK");
+    } else {
+        res.send("Formato inválido")
+    }
+});
+
 
 
 app.listen(5000);
