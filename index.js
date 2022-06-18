@@ -1,13 +1,12 @@
 import express from "express";
 import cors from 'cors';
-import bodyParser from 'body-parser'
 
 const app = express();
 const userData = [];
 const AllTweets = [];
 
 app.use(cors());
-app.use(bodyParser.json());
+app.use(express.json());
 
 
 app.post("/sign-up", (req, res) => {
@@ -29,11 +28,11 @@ app.post("/sign-up", (req, res) => {
 });
 
 app.post("/tweets", (req, res) => {
-    if(typeof(req.body.username)==="string"&&typeif(req.body.tweet)==="string"){
+    if(typeof(req.body.username)==="string"&&typeof(req.body.tweet)==="string"){
         AllTweets.push(req.body);
         res.send("OK");
     } else {
-        res.send("Formato inválido")
+        res.send("Formato inválido");
     }
 });
 
@@ -43,7 +42,6 @@ app.get("/tweets", (req, res) => {
         let identifiedUser
         let identifiedTT = AllTweets.map(function (t) {
             identifiedUser = userData.filter(user => user.username === t.username);
-            console.log(identifiedUser)
             return ({
                 username: identifiedUser[0].username,
                 avatar: identifiedUser[0].avatar,
